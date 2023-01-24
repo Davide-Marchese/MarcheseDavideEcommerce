@@ -22,26 +22,29 @@ public class ClientHandler extends Thread {
         }
     }
 
+    public String iterazioneProdotti(String prepend) {
+        int contatore = 0;
+        String messaggio = "";
+        for (Prodotto prodotto : prodotti) {
+            contatore++;
+            messaggio += contatore + ") " + prodotto.getNome() + ": " + prodotto.getQuantità() + "; ";
+        }
+        return prepend + messaggio;
+    }
+
     public void run() {
         try {
             String messaggio = in.readLine();
             System.out.println(messaggio);
-            if (messaggio.equals("Ispezione")) {
-                messaggio = "Prodotti: ";
-                int contatore = 0;
-                for (Prodotto prodotto : prodotti) {
-                    contatore++;
-                    messaggio += contatore + ")" + prodotto.getNome() + ": " + prodotto.getQuantità() + "; ";
-                }
+            if (messaggio.equals("Visita")) {
+                messaggio = iterazioneProdotti("Prodotti: ");
                 out.println(messaggio);
             } else {
-                messaggio = "Quale prodotto si vuole acquistare? ";
-                int contatore = 0;
-                for (Prodotto prodotto : prodotti) {
-                    contatore++;
-                    messaggio += contatore + ")" + prodotto.getNome() + ": " + prodotto.getQuantità() + "; ";
-                }
-                out.println(messaggio);
+                messaggio = iterazioneProdotti("Quale prodotto si vuole acquistare? ");
+                out.println(messaggio + " (Inserire il numero)");
+                String acquisto = in.readLine();
+                prodotti[Integer.parseInt(acquisto) - 1].acquista(1);
+                out.println("Acquistato 1 " + prodotti[Integer.parseInt(acquisto) - 1].getNome());
             }
         } catch (IOException e) {
             e.printStackTrace();

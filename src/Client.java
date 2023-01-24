@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 
 public class Client {
     public static void main(String[] args) {
@@ -19,11 +15,11 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Benvenuto in eHub, seleziona l'operazione da svolgere:\nIspezione\nAcquisto");
+        System.out.println("Benvenuto in eHub, seleziona l'operazione da svolgere:\nVisita\nAcquisto");
         try {
             scelta = read.readLine();
-            while (!scelta.equals("Ispezione") && !scelta.equals("Acquisto")) {
-                System.out.println("Selezionare l'operazione da svolgere:\nIspezione\nAcquisto");
+            while (!scelta.equals("Visita") && !scelta.equals("Acquisto")) {
+                System.out.println("Selezionare l'operazione da svolgere:\nVisita\nAcquisto");
                 scelta = read.readLine();
             }
         } catch (IOException e) {
@@ -32,6 +28,11 @@ public class Client {
         out.println(scelta);
         try {
             System.out.println(in.readLine());
+            if (scelta.equals("Acquisto")) {
+                String acquisto = read.readLine();
+                out.println(acquisto);
+                System.out.println(in.readLine());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
