@@ -34,7 +34,8 @@ public class ClientHandler extends Thread {
 
     public void run() {
         try {
-            String messaggio = in.readLine();
+            while(true){
+                String messaggio = in.readLine();
             System.out.println(messaggio);
             if (messaggio.equals("Visita")) {
                 messaggio = iterazioneProdotti("Prodotti: ");
@@ -45,6 +46,7 @@ public class ClientHandler extends Thread {
                 String acquisto = in.readLine();
                 prodotti[Integer.parseInt(acquisto) - 1].acquista(1);
                 out.println("Acquistato 1 " + prodotti[Integer.parseInt(acquisto) - 1].getNome());
+            }
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -15,7 +15,8 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Benvenuto in eHub, seleziona l'operazione da svolgere:\nVisita\nAcquisto");
+        while(true){
+            System.out.println("Benvenuto in eHub, seleziona l'operazione da svolgere:\nVisita\nAcquisto");
         try {
             scelta = read.readLine();
             while (!scelta.equals("Visita") && !scelta.equals("Acquisto")) {
@@ -35,6 +36,7 @@ public class Client {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
         }
     }
 }
