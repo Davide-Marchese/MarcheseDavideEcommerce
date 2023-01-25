@@ -44,8 +44,13 @@ public class ClientHandler extends Thread {
                 messaggio = iterazioneProdotti("Quale prodotto si vuole acquistare? ");
                 out.println(messaggio + " (Inserire il numero)");
                 String acquisto = in.readLine();
-                prodotti[Integer.parseInt(acquisto) - 1].acquista(1);
-                out.println("Acquistato 1 " + prodotti[Integer.parseInt(acquisto) - 1].getNome());
+                if(prodotti[Integer.parseInt(acquisto) - 1].getQuantità()>0){
+                    prodotti[Integer.parseInt(acquisto) - 1].acquista(1);
+                    out.println("Acquistato 1 " + prodotti[Integer.parseInt(acquisto) - 1].getNome());
+                }
+                else{
+                    out.println("Prodotto esaurito.");
+                }
             }
             }
         } catch (IOException e) {
